@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nelson Camara — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue:        #3bb1ff;
+            --blue-light:  rgba(59, 177, 255, 0.08);
+            --blue-mid:    rgba(59, 177, 255, 0.2);
+            --text:        #0f172a;
+            --text-muted:  #64748b;
+            --border:      #e2e8f0;
+            --bg:          #ffffff;
+            --surface:     #f8fafc;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ── NAV ─────────────────────────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 48px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover { color: var(--blue); }
+
+        .nav-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: color 0.15s;
+        }
+
+        .nav-github:hover { color: var(--blue); }
+        .nav-github svg { width: 20px; height: 20px; }
+
+        /* ── HERO ────────────────────────────────────────── */
+        .hero {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 80px 48px 64px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 20px;
+            background: var(--blue-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--blue-mid);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .accent { color: var(--blue); }
+
+        .hero-bottom {
+            display: flex;
+            align-items: flex-start;
+            gap: 48px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            line-height: 1.65;
+            flex: 1 1 320px;
+        }
+
+        .hero-rhythm {
+            flex: 0 0 auto;
+            border-left: 3px solid var(--blue);
+            padding-left: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.7;
+            white-space: nowrap;
+        }
+
+        .hero-rhythm .rhythm-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        .hero-rhythm .rhythm-line {
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .hero-rhythm .contact-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--blue);
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+
+        .hero-rhythm .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.15s;
+            white-space: nowrap;
+        }
+
+        .hero-rhythm .contact-line:hover { color: var(--blue); }
+
+        .hero-rhythm .contact-line svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: #fff;
+            padding: 11px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: opacity 0.15s, transform 0.15s;
+        }
+
+        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--text);
+            padding: 11px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 1px solid var(--border);
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+        /* ── SECTION ─────────────────────────────────────── */
+        .section {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 48px 80px;
+        }
+
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        /* ── FILTERS ─────────────────────────────────────── */
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.825rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+        .filter-btn.active {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
+        }
+
+        /* ── GRID ────────────────────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── CARD ────────────────────────────────────────── */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--blue);
+            border-radius: 12px;
+            padding: 26px;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            border-color: rgba(59, 177, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(59, 177, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--blue-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-icon svg { width: 18px; height: 18px; color: var(--blue); }
+
+        .card-lang {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--blue);
+            background: var(--blue-light);
+            border: 1px solid var(--blue-mid);
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .card-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-cta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        /* ── UPCOMING ────────────────────────────────────── */
+        .upcoming-section {
+            border-top: 1px solid var(--border);
+            padding-top: 56px;
+            margin-top: 16px;
+        }
+
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .upcoming-card {
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--blue);
+            border-radius: 12px;
+            padding: 28px 32px;
+            background: var(--surface);
+            box-shadow: 0 2px 12px rgba(59, 177, 255, 0.06);
+        }
+
+        .upcoming-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .upcoming-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #16a34a;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .upcoming-tag::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #16a34a;
+        }
+
+        .upcoming-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .upcoming-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        .upcoming-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px;
+        }
+
+        .upcoming-lang {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--blue);
+            background: var(--blue-light);
+            border: 1px solid var(--blue-mid);
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+        }
+
+        .upcoming-lang::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
+        /* ── STATES ──────────────────────────────────────── */
+        .state-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 48px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--blue); text-decoration: none; }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .nav-github span { display: none; }
+            .hero { padding: 52px 20px 44px; }
+            .section { padding: 0 20px 60px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .upcoming-grid { grid-template-columns: 1fr; }
+            footer { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-brand" href="#">Nelson Camara</a>
+    <a class="nav-github" href="https://github.com/NelsonCamara" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+    </a>
+</nav>
+
+<header class="hero">
+    <span class="hero-label">Portfolio</span>
+    <h1>Nelson <span class="accent">Camara</span></h1>
+    <div class="hero-bottom">
+        <p class="hero-sub">
+            En recherche d'une alternance en tant que Développeur Java/Python, DevOps/MLOps pour un Mastère en architecture des systèmes d'informations à la rentrée de Septembre/Octobre 2026.<br><br>Dans l'optique d'être un minimum opérationnel sur votre environnement technique lors de la prise de poste, je suis prêt à me former sur vos technologies d'ici là.
+        </p>
+        <div class="hero-rhythm">
+            <div class="rhythm-label">Rythme d'alternance</div>
+            <div class="rhythm-line">1 mois &nbsp;— Formation</div>
+            <div class="rhythm-line">3 mois — Entreprise</div>
+
+            <div class="contact-label">Contact</div>
+            <a class="contact-line" href="mailto:nelsoncamara490@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+                nelsoncamara490@gmail.com
+            </a>
+            <a class="contact-line" href="tel:+33695766649">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.53 6.53l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                06 95 76 66 49
+            </a>
+            <a class="contact-line" href="https://linkedin.com/in/nelson-camara" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                linkedin.com/in/nelson-camara
+            </a>
+        </div>
+    </div>
+    <div class="hero-actions">
+        <a href="https://github.com/NelsonCamara" target="_blank" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            Voir sur GitHub
+        </a>
+        <a href="Nelson_Camara_CV_2026.pdf" download class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Télécharger mon CV
+        </a>
+    </div>
+</header>
+
+<main class="section">
+    <h2 class="section-heading">Projets</h2>
+
+    <div class="filters" id="filters"></div>
+
+    <div class="projects-grid" id="grid">
+        <div class="state-msg">Chargement des projets...</div>
+    </div>
+
+    <div class="upcoming-section">
+        <h2 class="section-heading">Bientot disponibles</h2>
+        <div class="upcoming-grid">
+            <div class="upcoming-card">
+                <div class="upcoming-card-header">
+                    <span class="upcoming-tag">En cours</span>
+                </div>
+                <div class="upcoming-name">Outil de pilotage : Recherche d'alternance</div>
+                <div class="upcoming-desc">Je développe une plateforme pour suivre mes démarches (contacts, candidatures, versionning de CV, lettres de motivation, nouvelles offres des entreprises ciblées). L'objectif ? Me donner une vision d'ensemble de l'état de ma recherche en un clic afin d'être plus réactif et maximiser mes chances de décrocher une opportunité pertinente pour la suite de ma carrière.</div>
+                <div class="upcoming-footer">
+                    <span class="upcoming-lang">Java</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>Nelson Camara — <a href="https://github.com/NelsonCamara" target="_blank">github.com/NelsonCamara</a></p>
+</footer>
+
+<script>
+    const USERNAME = 'NelsonCamara';
+    const grid = document.getElementById('grid');
+    const filtersEl = document.getElementById('filters');
+
+    const ICON_REPO  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+    const ICON_ARROW = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+
+    async function init() {
+        try {
+            const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=30`);
+            if (!res.ok) throw new Error('API error');
+            const repos = await res.json();
+
+            grid.innerHTML = '';
+            const langs = new Set();
+
+            for (const repo of repos) {
+                if (repo.fork) continue;
+                const lang = repo.language || 'Autre';
+                langs.add(lang);
+
+                const url = `project/project.html?repo=${encodeURIComponent(repo.name)}&url=${encodeURIComponent(repo.html_url)}`;
+                const desc = repo.description || 'Aucune description disponible.';
+
+                const card = document.createElement('a');
+                card.className = 'project-card';
+                card.href = url;
+                card.dataset.lang = lang.toLowerCase();
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="card-icon">${ICON_REPO}</div>
+                        <span class="card-lang">${lang}</span>
+                    </div>
+                    <div class="card-name">${repo.name.replace(/-/g, ' ')}</div>
+                    <div class="card-desc">${desc}</div>
+                    <div class="card-footer">
+                        <span class="card-cta">Voir le projet ${ICON_ARROW}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+
+            if (!grid.querySelector('.project-card')) {
+                grid.innerHTML = '<div class="state-msg">Aucun projet trouvé.</div>';
+                return;
+            }
+
+            buildFilters(langs);
+        } catch {
+            grid.innerHTML = '<div class="state-msg">Impossible de charger les projets. Vérifiez votre connexion.</div>';
+        }
+    }
+
+    function buildFilters(langs) {
+        filtersEl.innerHTML = '<button class="filter-btn active" data-filter="all">Tous</button>';
+        langs.forEach(lang => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.dataset.filter = lang.toLowerCase();
+            btn.textContent = lang;
+            filtersEl.appendChild(btn);
+        });
+
+        filtersEl.addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            grid.querySelectorAll('.project-card').forEach(card => {
+                card.style.display = (f === 'all' || card.dataset.lang === f) ? 'flex' : 'none';
+            });
+        });
+    }
+
+    init();
+</script>
+
+</body>
+</html>
